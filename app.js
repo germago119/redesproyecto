@@ -4,19 +4,36 @@ import bodyParser from 'body-parser';
 import { Database } from './Database.js';
 
 const app = express()
-const port = 3001
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.set("port", process.env.PORT || 3001);
+app.set("host", process.env.HOST || "localhost");
+
+app.listen(app.get("port"), () => {
+  console.log(
+      "%s server listening at http://%s:%s",
+      process.env.NODE_ENV,
+      app.get("host"),
+      app.get("port")
+  );
+});
+
+const s = "Server Running... || Host: " + app.get("host") +" || Port: " + app.get("port")
+
+app.get("/", (req, res) => {
+  res.send(s)
+});
+
 const db = new Database();
 await db.connectDB();
 
 // ----------------------------------------------------------------------------------------
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}\n`)
-})
+// app.listen(port, () => {
+//   console.log(`Example app listening at http://localhost:${port}\n`)
+// })
 // ----------------------------------------------------------------------------------------
 
 app.get('/music', async(req, res) => {

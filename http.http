@@ -1,0 +1,6 @@
+GET http://localhost:3001/music
+Accept: application/json
+
+###
+GET http://redes-desafio.herokuapp.com/music
+Accept: application/json
