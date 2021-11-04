@@ -1,5 +1,11 @@
-GET http://localhost:3001/music
-Accept: application/json
+POST http://redes-desafio.herokuapp.com/login
+Content-Type: application/x-www-form-urlencoded
+
+username=vic&password=vica
+
+###
+#GET http://localhost:3001/music
+#Accept: application/json
 
 ###
 GET http://redes-desafio.herokuapp.com/music
